@@ -1,22 +1,32 @@
-
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement } from '../redux/actions'
-import { getCurrentCount } from '../redux/selectors'
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  increment,
+  decrement,
+  incrementBy,
+  decrementBy,
+  decrementPrompt,
+  incrementPrompt,
+} from "../redux/actions";
+import { getCurrentCount } from "../redux/selectors";
 
 const CounterComponent = () => {
-
   const count = useSelector(getCurrentCount);
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
 
   return (
     <div>
       <h4>Counter: {count}</h4>
-      <button onClick={() => dispatch(increment())}>INCREMENT</button>
-      <button onClick={() => dispatch(decrement())}>DECREMENT</button>
+      <button onClick={() => dispatch(increment())}>INCREMENT 1</button>
+      <button onClick={() => dispatch(decrement())}>DECREMENT 1</button>
+      <br />
+      <button onClick={() => dispatch(incrementBy(100))}>INCREMENT 100</button>
+      <button onClick={() => dispatch(decrementBy(100))}>DECREMENT 100</button>
+      <br />
+      <button onClick={() => dispatch(incrementPrompt(Number(prompt())))}>add</button>
+      <button onClick={() => dispatch(decrementPrompt(Number(prompt())))}>get</button>
     </div>
-  )
-}
+  );
+};
 
-export default CounterComponent
+export default CounterComponent;
